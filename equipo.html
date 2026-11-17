@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Zona Equipo · KMY</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0a0b">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="images/logo-msm.png">
+  <link rel="apple-touch-icon" href="images/logo-msm.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="header scrolled">
+  <div class="wrap header__in">
+    <a href="index.html" class="brand" aria-label="Volver al press kit"><img src="images/logo-msm.png" alt="" width="34" height="34"><span>KM<b>Y</b> · EQUIPO</span></a>
+    <nav class="nav" aria-label="Zona equipo" id="teamNav">
+      <a href="#dashboard" data-p="dashboard">Dashboard</a>
+      <a href="#datos" data-p="datos">Registro de datos</a>
+      <a href="#calendario" data-p="calendario">Plan y calendario</a>
+      <a href="#estrategia" data-p="estrategia">Estrategia de comunidad</a>
+      <a href="index.html" class="nav__team">← Press kit</a>
+    </nav>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer"><span></span></button>
+  </div>
+</header>
+<nav class="drawer" id="drawer" aria-label="Menú móvil">
+  <a href="#dashboard" data-p="dashboard">Dashboard</a>
+  <a href="#datos" data-p="datos">Registro de datos</a>
+  <a href="#calendario" data-p="calendario">Plan y calendario</a>
+  <a href="#estrategia" data-p="estrategia">Estrategia de comunidad</a>
+  <a href="index.html">← Press kit</a>
+</nav>
+
+<main>
+  <section class="team-hero">
+    <div class="wrap">
+      <span class="eyebrow">Zona equipo · Magic Sound Music</span>
+      <h1>Centro de <em>control</em></h1>
+      <p class="section__lead">Datos de la comunidad, plan de trabajo, calendario de lanzamientos y estrategia orgánica en un solo lugar.</p>
+      <div class="notice"><b>Cómo se guardan los datos:</b> lo que registres aquí (datos, eventos, metas) se guarda <b>solo en este navegador</b>. Para pasarlo a otro dispositivo usa <b>Respaldo completo</b> (pestaña Registro de datos). Esta página no aparece en buscadores, pero el sitio es público: no pongas aquí información confidencial.</div>
+    </div>
+  </section>
+
+  <div class="wrap" style="padding-block:24px 80px">
+    <div class="tabs" role="tablist" aria-label="Secciones de la zona equipo" id="mainTabs">
+      <button class="chip" role="tab" data-p="dashboard">📊 Dashboard</button>
+      <button class="chip" role="tab" data-p="datos">📝 Registro de datos</button>
+      <button class="chip" role="tab" data-p="calendario">🗓️ Plan y calendario</button>
+      <button class="chip" role="tab" data-p="estrategia">🚀 Estrategia de comunidad</button>
+    </div>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboard" class="tabpanel" hidden>
+      <div class="toolbar"><h2 class="section__title" style="font-size:clamp(1.4rem,4vw,2rem)">Resumen <em>actual</em></h2><span class="muted" id="dashDate"></span></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="panel-grid two">
+        <div class="card">
+          <div class="toolbar"><h3 style="margin:0">Evolución</h3>
+            <div class="field" style="min-width:220px"><label for="metricSel" class="sr-only">Métrica</label><select class="select" id="metricSel"></select></div>
+          </div>
+          <div id="chartBox"></div>
+        </div>
+        <div class="card">
+          <h3>Metas (90 días)</h3>
+          <p class="muted" style="font-size:.85rem">Metas sugeridas; edítalas cuando quieras. Deja vacío para quitar una meta.</p>
+          <div class="grid" id="goalsBox" style="gap:18px"></div>
+        </div>
+      </div>
+      <div class="panel-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
+        <div class="card"><h3>Ciudades (último registro)</h3><div id="dashCities"></div></div>
+        <div class="card"><h3>Temas más escuchados (último registro)</h3><div id="dashTracks"></div></div>
+      </div>
+    </section>
+
+    <!-- ================= REGISTRO DE DATOS ================= -->
+    <section id="datos" class="tabpanel" hidden>
+      <div class="toolbar"><h2 class="section__title" style="font-size:clamp(1.4rem,4vw,2rem)">Registro <em>de datos</em></h2></div>
+      <p class="muted">Cada domingo (o cuando quieras) copia las cifras de Spotify for Artists, YouTube Studio, Instagram, TikTok y Facebook. Cada registro es una “foto” del día.</p>
+      <div class="card">
+        <form id="snapForm" class="form-grid" autocomplete="off">
+          <div class="field"><label for="f_date">Fecha del registro</label><input class="input" type="date" id="f_date" required></div>
+          <div id="metricFields" style="display:contents"></div>
+          <div class="field full"><label for="f_cities">Ciudades — una por línea, formato “Ciudad: oyentes”</label><textarea class="textarea" id="f_cities" placeholder="Bogotá, CO: 50&#10;Cali, CO: 49"></textarea></div>
+          <div class="field full"><label for="f_tracks">Temas más escuchados — “Tema: streams”</label><textarea class="textarea" id="f_tracks" placeholder="Pakistan: 22052&#10;Call: 14869"></textarea></div>
+          <div class="field full"><label for="f_note">Nota (opcional)</label><input class="input" id="f_note" placeholder="Ej: semana del lanzamiento de Yonkou"></div>
+          <div class="full"><button class="btn btn--primary" type="submit">Guardar registro</button></div>
+        </form>
+      </div>
+      <div class="toolbar" style="margin-top:28px"><h3 style="margin:0">Historial</h3>
+        <div class="toolbar__group">
+          <button class="btn btn--sm" id="btnCsv">Exportar CSV</button>
+          <button class="btn btn--sm" id="btnBackup">Respaldo completo (JSON)</button>
+          <button class="btn btn--sm" id="btnRestore">Importar respaldo</button>
+          <input type="file" id="fileRestore" accept="application/json,.json" hidden>
+          <button class="btn btn--sm btn--danger" id="btnReset">Restablecer</button>
+        </div>
+      </div>
+      <div class="table-wrap"><table id="snapTable"></table></div>
+    </section>
+
+    <!-- ================= CALENDARIO ================= -->
+    <section id="calendario" class="tabpanel" hidden>
+      <div class="toolbar">
+        <h2 class="section__title" style="font-size:clamp(1.4rem,4vw,2rem)">Plan <em>y calendario</em></h2>
+        <div class="toolbar__group">
+          <button class="btn btn--primary btn--sm" id="btnNewEvent">+ Nuevo evento</button>
+          <button class="btn btn--sm" id="btnRollout">⚡ Plan de lanzamiento</button>
+          <button class="btn btn--sm" id="btnIcs">Exportar .ics</button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="tabs" style="margin:0" role="group" aria-label="Vista">
+          <button class="chip" data-view="mes" aria-pressed="true">Mes</button>
+          <button class="chip" data-view="agenda" aria-pressed="false">Agenda</button>
+          <button class="chip" data-view="anio" aria-pressed="false">Año</button>
+        </div>
+        <div class="toolbar__group" id="calNav">
+          <button class="btn btn--sm" id="calPrev" aria-label="Anterior">‹</button>
+          <strong class="cal__title" id="calTitle"></strong>
+          <button class="btn btn--sm" id="calNext" aria-label="Siguiente">›</button>
+          <button class="btn btn--sm btn--ghost" id="calToday">Hoy</button>
+        </div>
+      </div>
+      <div class="chips" id="typeFilters" role="group" aria-label="Filtrar por tipo"></div>
+      <div id="calBody"></div>
+      <div id="dayPanel" style="margin-top:18px"></div>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <!-- ================= ESTRATEGIA ================= -->
+    <section id="estrategia" class="tabpanel" hidden>
+      <div class="toolbar"><h2 class="section__title" style="font-size:clamp(1.4rem,4vw,2rem)">Estrategia <em>de comunidad orgánica</em></h2></div>
+      <div class="tabs" role="tablist" id="stratTabs" aria-label="Estrategia">
+        <button class="chip" role="tab" aria-selected="true" data-s="diag">Diagnóstico</button>
+        <button class="chip" role="tab" aria-selected="false" data-s="pilares">Pilares de contenido</button>
+        <button class="chip" role="tab" aria-selected="false" data-s="semana">Rutina semanal</button>
+        <button class="chip" role="tab" aria-selected="false" data-s="plat">Por plataforma</button>
+        <button class="chip" role="tab" aria-selected="false" data-s="embudo">Embudo y tácticas</button>
+        <button class="chip" role="tab" aria-selected="false" data-s="kpi">KPIs</button>
+        <button class="chip" role="tab" aria-selected="false" data-s="check">Checklist</button>
+      </div>
+      <div id="stratBody"></div>
+    </section>
+  </div>
+</main>
+
+<!-- Diálogo: evento -->
+<dialog id="eventDialog" aria-labelledby="evTitle">
+  <form method="dialog" id="eventForm">
+    <h3 id="evTitle">Nuevo evento</h3>
+    <div class="form-grid">
+      <div class="field full"><label for="e_title">Título</label><input class="input" id="e_title" required maxlength="120"></div>
+      <div class="field"><label for="e_type">Tipo</label><select class="select" id="e_type"></select></div>
+      <div class="field"><label for="e_status">Estado</label><select class="select" id="e_status"></select></div>
+      <div class="field"><label for="e_date">Fecha</label><input class="input" type="date" id="e_date" required></div>
+      <div class="field"><label for="e_time">Hora (opcional)</label><input class="input" type="time" id="e_time"></div>
+      <div class="field full"><label for="e_place">Lugar / plataforma</label><input class="input" id="e_place" maxlength="120"></div>
+      <div class="field full"><label for="e_notes">Notas</label><textarea class="textarea" id="e_notes"></textarea></div>
+    </div>
+    <div class="dialog__actions">
+      <button type="button" class="btn btn--danger btn--sm" id="e_delete" hidden>Eliminar</button>
+      <button type="button" class="btn btn--sm" id="e_cancel">Cancelar</button>
+      <button type="submit" class="btn btn--primary btn--sm">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Diálogo: plan de lanzamiento -->
+<dialog id="rolloutDialog" aria-labelledby="roTitle">
+  <form method="dialog" id="rolloutForm">
+    <h3 id="roTitle">Plan de lanzamiento</h3>
+    <p class="muted" style="margin:0;font-size:.9rem">Elige la canción y la fecha de salida: se crean automáticamente 15 tareas en el calendario, desde 6 semanas antes hasta 2 semanas después.</p>
+    <div class="form-grid">
+      <div class="field full"><label for="r_name">Canción / proyecto</label><input class="input" id="r_name" required maxlength="80" placeholder="Ej: La Cumbia Azucarera"></div>
+      <div class="field full"><label for="r_date">Fecha de lanzamiento</label><input class="input" type="date" id="r_date" required></div>
+    </div>
+    <div class="dialog__actions">
+      <button type="button" class="btn btn--sm" id="r_cancel">Cancelar</button>
+      <button type="submit" class="btn btn--primary btn--sm">Crear plan</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/equipo.js"></script>
+</body>
+</html>
